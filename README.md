@@ -5,6 +5,13 @@
 - node 8.11.0
 - yarn 1.12.3
 
+start server
+
+```bash
+rails s
+bin/webpack-dev-server
+```
+
 before push
 
 ```bash
