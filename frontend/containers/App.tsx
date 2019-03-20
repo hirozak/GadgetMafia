@@ -1,15 +1,25 @@
 import * as React from 'react';
+
+import { Entry } from '../types/model';
 import './App.scss';
 
 interface Props {
-  name: string;
+  entries: Entry[];
 }
 
 class App extends React.Component<Props> {
   render() {
     return (
       <div>
-        <p className="hello">Hello {this.props.name}</p>
+        {this.props.entries.map(entry => (
+          <div key={entry.id}>
+            <div>
+              {entry.title}
+              <i>{entry.publishedAgo}</i>
+            </div>
+            <div>from {entry.feed.name}</div>
+          </div>
+        ))}
       </div>
     );
   }
