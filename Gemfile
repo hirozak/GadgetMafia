@@ -11,8 +11,8 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'httparty'
 gem 'feedjira', '3.0.0.beta1'
+gem 'httparty'
 
 gem 'react-rails'
 gem 'webpacker'
@@ -22,10 +22,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
   gem 'rubocop'
-  gem 'bullet'
 end
 
 group :development do

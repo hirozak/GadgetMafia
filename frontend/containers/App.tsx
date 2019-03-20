@@ -1,27 +1,17 @@
 import * as React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { Entry } from '../types/model';
-import './App.scss';
+import Entries from './Entries/Entries';
 
-interface Props {
-  entries: Entry[];
-}
-
-class App extends React.Component<Props> {
+class App extends React.Component {
   render() {
     return (
-      <div>
-        {this.props.entries.map(entry => (
-          <div key={entry.id}>
-            <div>
-              {entry.title}
-              <i>{entry.publishedAgo}</i>
-            </div>
-            <div>from {entry.feed.name}</div>
-          </div>
-        ))}
-      </div>
-    );
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact={true} component={Entries} />
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
 

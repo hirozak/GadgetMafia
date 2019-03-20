@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @entries = Entry.includes(:feed).limit(30).order(published_at: :desc)
+    render_react_app
   end
 end
