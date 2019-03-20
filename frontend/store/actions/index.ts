@@ -1,0 +1,1 @@
+export { addEntries } from './entries';

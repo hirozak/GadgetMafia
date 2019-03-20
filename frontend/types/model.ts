@@ -6,10 +6,11 @@ export interface Feed {
 
 export interface Entry {
   id: number;
-  url: string;
-  title: string;
-  summary: string;
-  imageUrl: string;
-  publishedAgo: string;
-  feed: Feed;
+  // url: string;
+  // title: string;
+  // summary: string;
+  // imageUrl: string;
+  // publishedAgo: string;
+  // feed: Feed;
+  // slug: string;
 }

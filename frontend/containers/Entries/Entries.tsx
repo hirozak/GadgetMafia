@@ -1,10 +1,19 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Dispatch } from 'redux';
 
-import { Entry } from '../../types/model';
+import { addEntries } from '../../store/actions/index';
+import { EntriesState, Entry, RootActions, RootState } from '../../types/index';
 
-class Entries extends React.Component {
+interface Props {
+  entriesData: EntriesState;
+  fetchEntries: (entries: Entry[]) => void;
+}
+
+class Entries extends React.Component<Props> {
   componentWillMount() {
-    console.log("component will mount");
+    this.props.fetchEntries([{ id: 1 }]);
   }
 
   render() {
@@ -12,4 +21,21 @@ class Entries extends React.Component {
   }
 }
 
-export default Entries;
+const mapStateToProps = (state: RootState) => {
+  return {
+    entriesData: state.entriesData
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<RootActions>) => {
+  return {
+    fetchEntries: (entries: Entry[]) => dispatch(addEntries(entries))
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Entries)
+);

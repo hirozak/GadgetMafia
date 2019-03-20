@@ -1,4 +1,4 @@
-class Api::V1::HomeController < Api::V1::ApplicationController
+class Api::V1::EntriesController < Api::V1::ApplicationController
   def index
     @entries = Entry.includes(:feed).limit(30).order(published_at: :desc)
     render json: {
