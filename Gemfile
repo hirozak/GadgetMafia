@@ -11,6 +11,7 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'kaminari'
 gem 'feedjira', '3.0.0.beta1'
 gem 'httparty'
 
