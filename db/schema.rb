@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(version: 2019_03_20_063234) do
     t.string "title", default: "", null: false
     t.text "summary", default: "", null: false
     t.text "image_url", default: "", null: false
-    t.datetime "published_at", default: "2019-03-20 07:05:11", null: false
+    t.datetime "published_at", default: "2019-03-20 07:23:00", null: false
     t.integer "feed_id", null: false
+    t.string "slug", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["feed_id"], name: "index_entries_on_feed_id"
