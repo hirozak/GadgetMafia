@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Feed.create!(
+  name: "Gizmodo",
+  url: "https://www.gizmodo.jp/index.xml",
+  base_url: "https://www.gizmodo.jp"
+)
+Feed.create!(
+  name: "Engadget",
+  url: "https://japanese.engadget.com/rss.xml",
+  base_url: "https://japanese.engadget.com"
+)
+Feed.create!(
+  name: "ガジェット通信",
+  url: "https://getnews.jp/feed/ext/orig",
+  base_url: "https://getnews.jp"
+)
+Feed.create!(
+  name: "ガジェットショット",
+  url: "https://gadget-shot.com/feed",
+  base_url: "https://gadget-shot.com"
+)
+Feed.create!(
+  name: "gori.me",
+  url: "https://gori.me/feed",
+  base_url: "https://gori.me"
+)

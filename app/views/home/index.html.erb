@@ -1,1 +1,1 @@
-<%= react_component("App", { name: "Gadget Mafia" }) %>
+<%= react_component("App", { entries: @entries.map(&:format_json) }) %>
