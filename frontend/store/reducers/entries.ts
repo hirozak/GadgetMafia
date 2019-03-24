@@ -6,8 +6,8 @@ const initialState: EntriesState = {
   isInitialized: false,
   entries: [],
   page: 1,
-  hasMorePosts: true,
-  isFetshing: false
+  hasMoreEntries: true,
+  isFetching: false
 };
 
 const reducer = (
@@ -21,7 +21,19 @@ const reducer = (
         isInitialized: true,
         entries: [...state.entries, ...action.entries],
         page: state.page + 1,
-        isFetshing: false
+        isFetching: false
+      };
+    case ActionTypes.START_FETCHING_ENTRIES:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case ActionTypes.FINISH_FETCHING_ENTRIES:
+      return {
+        ...state,
+        isInitialized: true,
+        hasMoreEntries: false,
+        isFetching: false
       };
     default:
       return state;

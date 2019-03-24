@@ -1,3 +1,8 @@
-h2 {
-  font-family: NotoSansJP-Regular;
+.entries {
+  display: flex;
+  flex-flow: wrap;
+  padding: 5px;
+  @media (min-width: 761px) {
+    padding: 20px;
+  }
 }

@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import { EntriesActions, Entry } from '../../types/index';
+import { ENDPOINT } from '../../env';
+import axios from '../../tools/axios';
+import { EntriesActions, Entry, RootState } from '../../types/index';
 import { ActionTypes } from './actionTypes';
 
 export const addEntries = (entries: Entry[]): EntriesActions => {
@@ -11,13 +13,47 @@ export const addEntries = (entries: Entry[]): EntriesActions => {
   };
 };
 
+export const startFetchingEntries = (): EntriesActions => {
+  return {
+    type: ActionTypes.START_FETCHING_ENTRIES
+  };
+};
+
+export const finishFetchingEntries = (): EntriesActions => {
+  return {
+    type: ActionTypes.FINISH_FETCHING_ENTRIES
+  };
+};
+
+
 export const fetchEntries = (): ThunkAction<
   void,
-  undefined,
+  RootState,
   undefined,
   EntriesActions
 > => {
-  return (dispatch: Dispatch<EntriesActions>) => {
-    dispatch(addEntries([{ id: 1 }]));
+  return (dispatch: Dispatch<EntriesActions>, getState: () => RootState) => {
+    if (
+      getState().entriesData.hasMoreEntries &&
+      !getState().entriesData.isFetching
+    ) {
+      dispatch(startFetchingEntries());
+      const API_ENDPOINT = `${ENDPOINT}/entries`;
+      axios
+        .get(API_ENDPOINT, {
+          params: { page: getState().entriesData.page }
+        })
+        .then(res => {
+          if (res.data.result === 'success' && res.data.entries.length > 0) {
+            dispatch(addEntries(res.data.entries));
+          } else {
+            dispatch(finishFetchingEntries());
+          }
+        })
+        .catch(error => {
+          // tslint:disable-next-line: no-console
+          console.log(error);
+        });
+    }
   };
 };
