@@ -12,4 +12,5 @@ export interface Entry {
   imageUrl: string;
   publishedAgo: string;
   feed: Feed;
+  slug: string;
 }

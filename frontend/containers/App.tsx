@@ -1,26 +1,20 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Entry } from '../types/model';
-import './App.scss';
+import store from '../store/configureStore';
+import Entries from './Entries/Entries';
 
-interface Props {
-  entries: Entry[];
-}
-
-class App extends React.Component<Props> {
+class App extends React.Component {
   render() {
     return (
-      <div>
-        {this.props.entries.map(entry => (
-          <div key={entry.id}>
-            <div>
-              {entry.title}
-              <i>{entry.publishedAgo}</i>
-            </div>
-            <div>from {entry.feed.name}</div>
-          </div>
-        ))}
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact={true} component={Entries} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

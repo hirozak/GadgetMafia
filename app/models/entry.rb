@@ -31,7 +31,8 @@ class Entry < ApplicationRecord
       summary: summary,
       imageUrl: image_url,
       publishedAgo: ActionController::Base.helpers.time_ago_in_words(published_at),
-      feed: feed.format_json
+      feed: feed.format_json,
+      slug: slug
     }
   end
 end
