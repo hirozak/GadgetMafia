@@ -1,7 +1,7 @@
 .entries {
   display: flex;
   flex-flow: wrap;
-  padding: 5px;
+  justify-content: center;
   @media (min-width: 761px) {
     padding: 20px;
   }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { ThunkDispatch } from 'redux-thunk';
@@ -21,10 +22,19 @@ class Entries extends React.Component<Props> {
 
   render() {
     return (
-      <div className="entries">
-        {this.props.entriesData.entries.map(entry => (
-          <Item key={entry.id} entry={entry} />
-        ))}
+      <div>
+        <InfiniteScroll
+          dataLength={this.props.entriesData.entries.length}
+          next={() => this.props.fetchEntries()}
+          hasMore={this.props.entriesData.hasMoreEntries}
+          style={{ overflow: 'visible' }}
+        >
+          <div className="entries">
+            {this.props.entriesData.entries.map(entry => (
+              <Item key={entry.id} entry={entry} />
+            ))}
+          </div>
+        </InfiniteScroll>
         {this.props.entriesData.isFetching && <ItemLoader />}
       </div>
     );

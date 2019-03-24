@@ -16,6 +16,7 @@
     "react": "^16.8.4",
     "react-content-loader": "^4.2.1",
     "react-dom": "^16.8.4",
+    "react-infinite-scroll-component": "^4.5.2",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react_ujs": "^2.4.4",
