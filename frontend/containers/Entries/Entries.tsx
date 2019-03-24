@@ -27,7 +27,7 @@ class Entries extends React.Component<Props> {
           dataLength={this.props.entriesData.entries.length}
           next={() => this.props.fetchEntries()}
           hasMore={this.props.entriesData.hasMoreEntries}
-          style={{ overflow: 'visible' }}
+          style={{ overflow: 'scroll' }}
         >
           <div className="entries">
             {this.props.entriesData.entries.map(entry => (
