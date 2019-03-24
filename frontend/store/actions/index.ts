@@ -1,1 +1,1 @@
-export { addEntries } from './entries';
+export { fetchEntries } from './entries';

@@ -7,7 +7,7 @@ export interface AddEntriesAction extends Action {
   entries: Entry[];
 }
 
-export type EntriesActions = AddEntriesAction;
+export type EntriesActions = AddEntriesAction & Action;
 
 export interface EntriesState {
   isInitialized: boolean;

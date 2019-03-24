@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
-import { addEntries } from '../../store/actions/index';
-import { EntriesState, Entry, RootActions, RootState } from '../../types/index';
+import { fetchEntries } from '../../store/actions/index';
+import { EntriesActions, EntriesState, RootState } from '../../types/index';
 
 interface Props {
   entriesData: EntriesState;
-  fetchEntries: (entries: Entry[]) => void;
+  fetchEntries: () => void;
 }
 
 class Entries extends React.Component<Props> {
   componentWillMount() {
-    this.props.fetchEntries([{ id: 1 }]);
+    this.props.fetchEntries();
   }
 
   render() {
@@ -27,9 +27,11 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<RootActions>) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<undefined, undefined, EntriesActions>
+) => {
   return {
-    fetchEntries: (entries: Entry[]) => dispatch(addEntries(entries))
+    fetchEntries: () => dispatch(fetchEntries())
   };
 };
 

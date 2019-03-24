@@ -16,7 +16,6 @@ const reducer = (
 ) => {
   switch (action.type) {
     case ActionTypes.ADD_ENTRIES:
-      console.log('will add entries');
       return {
         ...state,
         isInitialized: true,
