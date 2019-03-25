@@ -14,7 +14,7 @@
     @media (max-width: 760px) {
       padding: 5px 5px 20px 5px;
     }
-    &:hover, &:active {
+    &:hover {
       background-color: rgba(240, 240, 240, 0.9);
       cursor: pointer;
     }
@@ -27,9 +27,11 @@
     @media (max-width: 760px) {
       height: 150px;
     }
-    &:hover, &:active {
-      -webkit-transform: scale(1.05);
-      transform: scale(1.05);
+    @media (min-width: 760px) {
+      &:hover {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+      }
     }
   }
   &-title {
