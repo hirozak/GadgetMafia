@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Entry } from '../../types/index';
 import './item.scss';
@@ -9,7 +10,13 @@ interface Props {
 
 const item: React.SFC<Props> = (props: Props) => (
   <div className="entry">
-    <div className="entry-container">
+    <Link
+      to={{
+        pathname: `/entries/${props.entry.slug}`,
+        state: { entry: props.entry }
+      }}
+      className="entry-link"
+    >
       <img
         className="entry-image"
         src={props.entry.imageUrl}
@@ -22,7 +29,7 @@ const item: React.SFC<Props> = (props: Props) => (
           {props.entry.publishedAgo}
         </span>
       </div>
-    </div>
+    </Link>
   </div>
 );
 

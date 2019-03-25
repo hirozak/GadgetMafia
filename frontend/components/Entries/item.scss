@@ -5,12 +5,14 @@
     width: calc(50vw - 5px);
     margin: 0;
   }
-  &-container {
+  &-link {
+    display: block;
     padding: 10px 10px 25px 10px;
+    border-radius: 7px;
+    text-decoration: none;
     @media (max-width: 760px) {
       padding: 5px 5px 20px 5px;
     }
-    border-radius: 7px;
     &:hover, &:active {
       background-color: rgba(240, 240, 240, 0.9);
       cursor: pointer;
