@@ -29,7 +29,7 @@ class Entries extends React.Component<Props> {
           hasMore={this.props.entriesData.hasMoreEntries}
           style={{ overflow: 'scroll' }}
         >
-          <div className="entries">
+          <div className="Entries">
             {this.props.entriesData.entries.map(entry => (
               <Item key={entry.id} entry={entry} />
             ))}

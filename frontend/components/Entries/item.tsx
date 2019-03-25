@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Entry } from '../../types/index';
 import './item.scss';
@@ -8,21 +9,29 @@ interface Props {
 }
 
 const item: React.SFC<Props> = (props: Props) => (
-  <div className="entry">
-    <div className="entry-container">
+  <div className="EntriesItem">
+    <Link
+      to={{
+        pathname: `/entries/${props.entry.slug}`,
+        state: { entry: props.entry }
+      }}
+      className="EntriesItem-link"
+    >
       <img
-        className="entry-image"
+        className="EntriesItem-image"
         src={props.entry.imageUrl}
         alt={props.entry.title}
       />
-      <p className="entry-title">{props.entry.title}</p>
-      <div className="entry-info">
-        <span className="entry-info--feedName">{props.entry.feed.name}</span>
-        <span className="entry-info--publishedAgo">
+      <p className="EntriesItem-title">{props.entry.title}</p>
+      <div className="EntriesItem-info">
+        <span className="EntriesItem-info--feedName">
+          {props.entry.feed.name}
+        </span>
+        <span className="EntriesItem-info--publishedAgo">
           {props.entry.publishedAgo}
         </span>
       </div>
-    </div>
+    </Link>
   </div>
 );
 

@@ -3,7 +3,7 @@ import { ThunkAction } from 'redux-thunk';
 
 import { ENDPOINT } from '../../env';
 import axios from '../../tools/axios';
-import { EntriesActions, Entry, RootState } from '../../types/index';
+import { EntriesActions, Entry, Feed, RootState } from '../../types/index';
 import { ActionTypes } from './actionTypes';
 
 export const addEntries = (entries: Entry[]): EntriesActions => {
@@ -24,7 +24,6 @@ export const finishFetchingEntries = (): EntriesActions => {
     type: ActionTypes.FINISH_FETCHING_ENTRIES
   };
 };
-
 
 export const fetchEntries = (): ThunkAction<
   void,
