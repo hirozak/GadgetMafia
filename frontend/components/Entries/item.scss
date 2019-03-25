@@ -1,6 +1,7 @@
 .entry {
   width: 260px;
   margin: 2px;
+  transition: .3s;
   @media (max-width: 760px) {
     width: calc(50vw - 5px);
     margin: 0;
@@ -25,6 +26,10 @@
     object-fit: cover;
     @media (max-width: 760px) {
       height: 150px;
+    }
+    &:hover, &:active {
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
     }
   }
   &-title {
