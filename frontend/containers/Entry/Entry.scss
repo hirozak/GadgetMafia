@@ -4,6 +4,27 @@
   @media (max-width: 760px) {
     padding: 0;
   }
+  &-feed {
+    background-color: #fff;
+    @media (min-width: 761px) {
+      padding: 20px;
+      margin: 20px 0;
+    }
+    &--title {
+      font-family: NotoSansJP-Medium;
+      text-align: center;
+      @media (max-width: 760px) {
+        margin: 0;
+        padding: 15px;
+        border-top: 1px solid #eee;
+      }
+    }
+    &--entries {
+      display: flex;
+      flex-flow: wrap;
+      justify-content: center;
+    }
+  }
   &-back {
     display: flex;
     align-items: center;

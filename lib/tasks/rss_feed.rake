@@ -10,7 +10,7 @@ namespace :rss_feed do
         local_entry.update(
           url: parsed_entry.url.lstrip,
           title: parsed_entry.title.lstrip,
-          summary: parsed_entry.summary.lstrip.gsub(%r{<img(.+?)/>}, ''),
+          summary: parsed_entry.summary.lstrip.gsub(%r{<(.+?)/>}, ''),
           image_url: get_image_url_from_entry(parsed_entry),
           published_at: parsed_entry.published
         )
