@@ -9,23 +9,25 @@ interface Props {
 }
 
 const item: React.SFC<Props> = (props: Props) => (
-  <div className="entry">
+  <div className="EntriesItem">
     <Link
       to={{
         pathname: `/entries/${props.entry.slug}`,
         state: { entry: props.entry }
       }}
-      className="entry-link"
+      className="EntriesItem-link"
     >
       <img
-        className="entry-image"
+        className="EntriesItem-image"
         src={props.entry.imageUrl}
         alt={props.entry.title}
       />
-      <p className="entry-title">{props.entry.title}</p>
-      <div className="entry-info">
-        <span className="entry-info--feedName">{props.entry.feed.name}</span>
-        <span className="entry-info--publishedAgo">
+      <p className="EntriesItem-title">{props.entry.title}</p>
+      <div className="EntriesItem-info">
+        <span className="EntriesItem-info--feedName">
+          {props.entry.feed.name}
+        </span>
+        <span className="EntriesItem-info--publishedAgo">
           {props.entry.publishedAgo}
         </span>
       </div>

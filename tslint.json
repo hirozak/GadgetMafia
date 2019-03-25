@@ -20,7 +20,7 @@
     "no-implicit-dependencies": [true, "dev"],
     "no-namespace": false,
     "no-shadowed-variable": false,
-    "no-submodule-imports": [true, "promise-polyfill/src/polyfill"],
+    "no-submodule-imports": false,
     "no-unused-expression": false,
     "object-literal-sort-keys": false,
     "prettier": [

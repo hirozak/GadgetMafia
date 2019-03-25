@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { IoIosArrowBack } from 'react-icons/io';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
@@ -16,8 +17,8 @@ class Entry extends React.Component<RouteComponentProps, Props> {
 
   render() {
     return (
-      <div>
-        <h2>entries#show</h2>
+      <div className="Entry-wrapper">
+        <IoIosArrowBack size="30px" color="#222" />
       </div>
     );
   }
