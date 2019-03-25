@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 
+import Content from '../../components/Entry/content';
 import { Entry as EntryType } from '../../types/index';
+import './Entry.scss';
 
 interface Props {
   entry: EntryType;
@@ -17,8 +19,12 @@ class Entry extends React.Component<RouteComponentProps, Props> {
 
   render() {
     return (
-      <div className="Entry-wrapper">
-        <IoIosArrowBack size="30px" color="#222" />
+      <div className="Entry">
+        <Content entry={this.entry} />
+        <Link to="/" className="Entry-back">
+          <IoIosArrowBack size="30px" color="#222" />
+          <span>ホームに戻る</span>
+        </Link>
       </div>
     );
   }

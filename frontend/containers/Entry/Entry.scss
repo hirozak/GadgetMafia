@@ -1,0 +1,32 @@
+.Entry {
+  background-color: #f7f7f7;
+  padding: 15px 0;
+  @media (max-width: 760px) {
+    padding: 0;
+  }
+  &-back {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    @media (max-width: 760px) {
+      top: 5px;
+      left: 10px;
+    }
+    &:hover {
+      background-color: #e7e7e7;
+    }
+    span {
+      font-family: NotoSansJP-Medium;
+      font-size: 20px;
+      color: #222;
+      @media (max-width: 1240px) {
+        display: none;
+      }
+    }
+  }
+}
