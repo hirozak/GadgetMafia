@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import Content from '../../components/Entry/content';
 import { Entry as EntryType } from '../../types/index';
