@@ -11,6 +11,11 @@
     width: 90%;
     margin: 0 auto;
   }
+  &-loader {
+    svg {
+      min-height: 500px;
+    }
+  }
   &-image {
     text-align: center;
     img {

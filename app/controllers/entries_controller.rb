@@ -4,9 +4,6 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find_by(slug: params[:id])
-    render component: 'App', props: {
-      entry: @entry.format_json
-    }, prerender: false
+    render_react_app
   end
 end

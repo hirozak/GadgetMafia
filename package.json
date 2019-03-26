@@ -1,8 +1,8 @@
 {
   "name": "gadget-mafia",
   "scripts": {
-    "lint": "yarn run tslint frontend/**/*.{ts,tsx}",
-    "prettier": "yarn run tslint frontend/**/*.{ts,tsx}  --fix"
+    "lint": "yarn run tslint frontend/**/*.{ts,tsx} frontend/**/**/*.{ts,tsx}",
+    "prettier": "yarn run tslint frontend/**/*.{ts,tsx} frontend/**/**/*.{ts,tsx}  --fix"
   },
   "private": true,
   "dependencies": {

@@ -8,22 +8,14 @@ import Entry from '../containers/Entry/Entry';
 import store from '../store/configureStore';
 import './App.scss';
 
-interface Props {
-  entry: EntryType;
-}
-
-class App extends React.Component<Props> {
+class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
             <Route path="/" exact={true} component={Entries} />
-            <Route
-              path="/entries/:slug"
-              exact={true}
-              render={() => <Entry entry={this.props.entry} />}
-            />
+            <Route path="/entries/:slug" exact={true} component={Entry} />} />
           </Switch>
         </BrowserRouter>
       </Provider>

@@ -12,20 +12,16 @@ import axios from '../../tools/axios';
 import { EntriesState, Entry as EntryType } from '../../types/index';
 import './Entry.scss';
 
-interface Props {
-  entry: EntryType;
-}
-
 interface State {
   entry: EntryType;
   feedEntries: EntriesState;
 }
 
-class Entry extends React.Component<Props & RouteComponentProps, State> {
+class Entry extends React.Component<RouteComponentProps, State> {
   state: State = {
     entry:
       this.props.location.state === undefined
-        ? this.props.entry
+        ? null
         : this.props.location.state.entry,
     feedEntries: {
       isInitialized: false,
@@ -36,7 +32,7 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
     }
   };
 
-  fetchFeedEntries() {
+  fetchEntry() {
     const feedEntries = this.state.feedEntries;
     if (feedEntries.hasMoreEntries && !feedEntries.isFetching) {
       this.setState({
@@ -45,7 +41,9 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
           isFetching: true
         }
       });
-      const API_ENDPOINT = `${ENDPOINT}/entries/${this.state.entry.slug}`;
+      const API_ENDPOINT = `${ENDPOINT}/entries/${
+        this.props.match.params.slug
+      }`;
       axios
         .get(API_ENDPOINT, {
           params: { page: feedEntries.page }
@@ -53,6 +51,7 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
         .then(res => {
           if (res.data.result === 'success' && res.data.entries.length > 0) {
             this.setState({
+              entry: res.data.entry,
               feedEntries: {
                 isInitialized: true,
                 entries: [...feedEntries.entries, ...res.data.entries],
@@ -81,22 +80,20 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.fetchFeedEntries();
+    this.fetchEntry();
   }
 
   componentWillReceiveProps() {
-    this.setState(
-      (prevState: State, nextProps: Props & RouteComponentProps) => {
-        window.scrollTo(0, 0);
-        return {
-          ...prevState,
-          entry:
-            nextProps.location.state === undefined
-              ? nextProps.entry
-              : nextProps.location.state.entry
-        };
-      }
-    );
+    this.setState((prevState: State, nextProps: RouteComponentProps) => {
+      window.scrollTo(0, 0);
+      return {
+        ...prevState,
+        entry:
+          nextProps.location.state === undefined
+            ? nextProps.entry
+            : nextProps.location.state.entry
+      };
+    });
   }
 
   render() {
@@ -106,13 +103,13 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
         <Content entry={this.state.entry} />
         <InfiniteScroll
           dataLength={feedEntries.entries.length}
-          next={() => this.fetchFeedEntries()}
+          next={() => this.fetchEntry()}
           hasMore={feedEntries.hasMoreEntries}
           style={{ overflow: 'scroll' }}
         >
           <div className="Entry-feed">
             <h3 className="Entry-feed--title">
-              {this.state.entry.feed.name}の新着記事
+              {this.state.entry && this.state.entry.feed.name}
             </h3>
             <div className="Entry-feed--entries">
               {feedEntries.entries.map(entry => (

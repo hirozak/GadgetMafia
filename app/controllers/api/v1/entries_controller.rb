@@ -14,6 +14,7 @@ class Api::V1::EntriesController < Api::V1::ApplicationController
     @entries = @entry.feed.entries.where('id != ?', @entry.id).page(params[:page]).per(15).order(published_at: :desc)
     render json: {
       result: :success,
+      entry: @entry.format_json,
       entries: @entries.map(&:format_json)
     }
   rescue StandardError => e
