@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'feedjira', '3.0.0.beta1'
 gem 'httparty'
 gem 'kaminari'
+gem 'rack-cors'
 
 gem 'react-rails'
 gem 'webpacker'
