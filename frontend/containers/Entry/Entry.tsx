@@ -17,11 +17,16 @@ interface Props {
 }
 
 interface State {
+  entry: EntryType;
   feedEntries: EntriesState;
 }
 
 class Entry extends React.Component<Props & RouteComponentProps, State> {
   state: State = {
+    entry:
+      this.props.location.state === undefined
+        ? this.props.entry
+        : this.props.location.state.entry,
     feedEntries: {
       isInitialized: false,
       entries: [],
@@ -30,11 +35,6 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
       isFetching: false
     }
   };
-
-  entry: EntryType =
-    this.props.entry === undefined
-      ? this.props.location.state.entry
-      : this.props.entry;
 
   fetchFeedEntries() {
     const feedEntries = this.state.feedEntries;
@@ -45,7 +45,7 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
           isFetching: true
         }
       });
-      const API_ENDPOINT = `${ENDPOINT}/entries/${this.entry.slug}`;
+      const API_ENDPOINT = `${ENDPOINT}/entries/${this.state.entry.slug}`;
       axios
         .get(API_ENDPOINT, {
           params: { page: feedEntries.page }
@@ -84,11 +84,20 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
     this.fetchFeedEntries();
   }
 
+  componentWillReceiveProps(props: Props & RouteComponentProps) {
+    this.setState({
+      entry:
+        props.location.state === undefined
+          ? props.entry
+          : props.location.state.entry
+    });
+  }
+
   render() {
     const feedEntries = this.state.feedEntries;
     return (
       <div className="Entry">
-        <Content entry={this.entry} />
+        <Content entry={this.state.entry} />
         <InfiniteScroll
           dataLength={feedEntries.entries.length}
           next={() => this.fetchFeedEntries()}
@@ -97,7 +106,7 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
         >
           <div className="Entry-feed">
             <h3 className="Entry-feed--title">
-              {this.entry.feed.name}の新着記事
+              {this.state.entry.feed.name}の新着記事
             </h3>
             <div className="Entry-feed--entries">
               {feedEntries.entries.map(entry => (
