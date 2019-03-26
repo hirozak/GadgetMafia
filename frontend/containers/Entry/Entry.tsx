@@ -84,13 +84,19 @@ class Entry extends React.Component<Props & RouteComponentProps, State> {
     this.fetchFeedEntries();
   }
 
-  componentWillReceiveProps(props: Props & RouteComponentProps) {
-    this.setState({
-      entry:
-        props.location.state === undefined
-          ? props.entry
-          : props.location.state.entry
-    });
+  componentWillReceiveProps() {
+    this.setState(
+      (prevState: State, nextProps: Props & RouteComponentProps) => {
+        window.scrollTo(0, 0);
+        return {
+          ...prevState,
+          entry:
+            nextProps.location.state === undefined
+              ? nextProps.entry
+              : nextProps.location.state.entry
+        };
+      }
+    );
   }
 
   render() {
