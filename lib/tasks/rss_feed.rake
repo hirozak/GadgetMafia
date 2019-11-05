@@ -2,6 +2,7 @@ namespace :rss_feed do
   desc 'fetch rss feed entries from registered feeds'
   task fetch_entries: :environment do
     before_entry_count = Entry.count
+    before_entry_count = delete_old_entries if before_entry_count > 9500
     Feed.find_each do |local_feed|
       fetched_xml = HTTParty.get(local_feed.url).body
       parsed_feed = Feedjira.parse(fetched_xml, parser: Feedjira::Parser::RSS)
@@ -18,6 +19,9 @@ namespace :rss_feed do
       end
     end
     puts "Registered #{Entry.count - before_entry_count} new entries"
+
+  rescue => e
+    pp e.message
   end
 
   def get_image_url_from_entry(entry)
@@ -28,5 +32,11 @@ namespace :rss_feed do
     else
       ''
     end
+  end
+
+  def delete_old_entries
+    old_entries = entries = Entry.limit(3000).order(:created_at)
+    old_entries.delete_all
+    Entry.count
   end
 end
